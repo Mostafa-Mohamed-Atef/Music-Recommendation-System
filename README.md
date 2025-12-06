@@ -1,0 +1,1 @@
+# why we changed from json to csv ( because hadoop small file problem there are many json files and this is one of hadoop big problems)
