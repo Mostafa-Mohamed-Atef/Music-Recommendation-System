@@ -44,8 +44,20 @@ services:
     ports:
       - "7077:7077"
       - "8080:8080"
+    volumes:
+      - ./spark-host:/spark-host 
     networks:
       - hadoop
+
+  spark-client:
+    image: apache/spark:3.5.1
+    container_name: spark-client
+    command: bash -c "sleep infinity"
+    volumes:
+      - ./spark-host:/opt/spark
+    networks:
+      - hadoop
+
 
   spark-worker:
     image: bde2020/spark-worker:3.2.0-hadoop3.2
@@ -54,7 +66,6 @@ services:
       - SPARK_MASTER=spark://spark-master:7077
     networks:
       - hadoop
-
 volumes:
   namenode:
   datanode:
